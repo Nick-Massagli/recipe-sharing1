@@ -1,0 +1,173 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Recipe Sharing DB",
+    "description": "An API for writing, sharing, and finding recipes",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Recipe",
+      "description": "functions regarding the written recipe"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/recipe/": {
+      "get": {
+        "tags": ["Recipe"],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Recipe"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "string"
+                },
+                "ingredients": {
+                  "example": "string"
+                },
+                "directions": {
+                  "example": "string"
+                },
+                "prepTime": {
+                  "example": "string"
+                },
+                "AuthorID": {
+                  "example": "int"
+                },
+                "createdTimestamp": {
+                  "example": "int"
+                },
+                "serves": {
+                  "example": "int"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/recipe/{id}": {
+      "get": {
+        "tags": ["Recipe"],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Recipe"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "string"
+                },
+                "ingredients": {
+                  "example": "string"
+                },
+                "directions": {
+                  "example": "string"
+                },
+                "prepTime": {
+                  "example": "string"
+                },
+                "AuthorID": {
+                  "example": "int"
+                },
+                "createdTimestamp": {
+                  "example": "int"
+                },
+                "serves": {
+                  "example": "int"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+        
+      },
+      "delete": {
+        "tags": ["Recipe"],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+   
+        }
+      }
