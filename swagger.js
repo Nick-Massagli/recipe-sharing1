@@ -4,8 +4,8 @@ const doc = {
     title: "Recipe Sharing Database",
     description: "An API for writing, sharing, and finding recipe",
   },
-  host: "https://recipe-sharing-zj35.onrender.com",
-  schemes: ["http"],
+  host: "recipe-sharing-zj35.onrender.com",
+  schemes: ["https"],
 };
 const outputFile = "./swagger.json";
 const endpointsFiles = ["./routes/index.js"];
