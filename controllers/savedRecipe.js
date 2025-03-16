@@ -15,15 +15,15 @@ exports.getSingle = async (req, res) => {
 };
 //create a new saved recipe with aggregation with recipe and user
 exports.createRecipe = async (req, res) => {
-    const db = mongodb.getDB();
-    const recipe = await db.collection('recipe').findOne({ _id: ObjectId(req.body.recipeID) });
-    const user = await db.collection('users').findOne({ _id: ObjectId(req.body.userID) });
+   // const db = mongodb.getDB();
+    const recipe = await mongodb.getDb().db().collection('recipe').findOne({ _id: ObjectId(req.body.recipeID) });
+    const user = await mongodb.getDb().db().collection('users').findOne({ _id: ObjectId(req.body.userID) });
     const savedRecipe = {
         recipe: recipe,
         user: user,
         savedTimestamp: new Date()
     };
-    const response = await db.collection('savedRecipe').insertOne(savedRecipe);
+    const response = await mongodb.getDb().db().collection('savedRecipe').insertOne(savedRecipe);
     if (response.acknowledged) {
         res.status(201).json(response);
     } else {
