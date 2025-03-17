@@ -1,4 +1,4 @@
-POST https://localhost:8080/users
+POST http://localhost:8080/users
 Content-Type: application/json
 {
   "firstName": "Josh",
@@ -6,3 +6,5 @@ Content-Type: application/json
     "email": "iwillnevertell@gmail.com",
     "username":"joshdoe",
 }
+###
+GET http://localhost:8080/users
