@@ -1,4 +1,4 @@
-GET http://localhost:8080/recipe
+GET http://localhost:8080/savedrecipe
 ###
 POST http://localhost:8080/savedRecipe
 Content-Type: application/json

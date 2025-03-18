@@ -3,8 +3,8 @@ const ObjectId = require('mongodb').ObjectId;
 
 //get alist of all saved recipes
 exports.getAll = async (req, res) => {
-    const db = mongodb.getDB();
-    const savedRecipe = await db.collection('savedRecipe').find({}).toArray();
+   // const db = mongodb.getDB();
+    const savedRecipe = await mongodb.getDb().db().collection('savedRecipe').find().toArray();
     res.json(savedRecipe);
 };
 //get by id
@@ -16,11 +16,13 @@ exports.getSingle = async (req, res) => {
 //create a new saved recipe with aggregation with recipe and user
 exports.createRecipe = async (req, res) => {
    // const db = mongodb.getDB();
-    const recipe = await mongodb.getDb().db().collection('recipe').findOne({ _id: ObjectId(req.body.recipeID) });
-    const user = await mongodb.getDb().db().collection('users').findOne({ _id: ObjectId(req.body.userID) });
+   const recipeId = new ObjectId(req.params.id);
+    const userId = new ObjectId(req.params.id);
+    const recipe = await mongodb.getDb().db().collection('recipe').findOne({ _id: new ObjectId(req.params.recipeId) });
+    const user = await mongodb.getDb().db().collection('users').findOne({ _id:new ObjectId(req.params.userId) });
     const savedRecipe = {
-        recipe: recipe,
-        user: user,
+        recipe: recipeId,
+        user: userId,
         savedTimestamp: new Date()
     };
     const response = await mongodb.getDb().db().collection('savedRecipe').insertOne(savedRecipe);
