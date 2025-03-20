@@ -1,7 +1,7 @@
-const app = require('../server')
+const server = require('../server')
 const supertest = require('supertest');
 const { expect } = require('@jest/globals');
-const request = supertest(app)
+const request = supertest(server)
 
 describe('Test Handlers', () => {
     test('responds to /', async () => {

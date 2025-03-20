@@ -16,6 +16,7 @@
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.0",
     "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
     "express": "^4.16.3",
     "googleapis": "^105.0.0",
