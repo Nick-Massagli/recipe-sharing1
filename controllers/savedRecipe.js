@@ -18,8 +18,8 @@ exports.createRecipe = async (req, res) => {
    // const db = mongodb.getDB();
    const recipeId = new ObjectId(req.params.id);
     const userId = new ObjectId(req.params.id);
-    const recipe = await mongodb.getDb().db().collection('recipe').findOne({ _id: new ObjectId(req.params.recipeId) });
-    const user = await mongodb.getDb().db().collection('users').findOne({ _id:new ObjectId(req.params.userId) });
+    const recipe = await mongodb.getDb().db().collection('recipe').findOne({ _id: recipeId });
+    const user = await mongodb.getDb().db().collection('users').findOne({ _id: userId });
     const savedRecipe = {
         recipe: recipeId,
         user: userId,
