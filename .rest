@@ -5,5 +5,5 @@ Content-Type: application/json
 
 {
   "recipeId": "67d6077c1d3bd282b0bc0f2e",
-  "userId": "67d60989c30c9499412b4ab2"
+  "userId": "67dc2db3611c4c3777570ed0"
 }

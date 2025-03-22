@@ -15,23 +15,50 @@ exports.getSingle = async (req, res) => {
 };
 //create a new saved recipe with aggregation with recipe and user
 exports.createRecipe = async (req, res) => {
-   // const db = mongodb.getDB();
-   const recipeId = new ObjectId(req.params.id);
-    const userId = new ObjectId(req.params.id);
-    const recipe = await mongodb.getDb().db().collection('recipe').findOne({ _id: recipeId });
-    const user = await mongodb.getDb().db().collection('users').findOne({ _id: userId });
-    const savedRecipe = {
-        recipe: recipeId,
-        user: userId,
-        savedTimestamp: new Date()
-    };
-    const response = await mongodb.getDb().db().collection('savedRecipe').insertOne(savedRecipe);
-    if (response.acknowledged) {
-        res.status(201).json(response);
-    } else {
-        res.status(500).json(response.error || 'Some error occurred while creating the saved recipe.');
-    }
-};
+    try {
+        //const recipeId = new ObjectId(req.body.recipeId); // Recipe ID from request body
+        //const userId = new ObjectId(req.body.userId); // User ID from request body
+
+        // Fetch the recipe and user from their respective collections
+        const recipe = await mongodb.getDb().db().collection('recipe').findOne({ _id: new ObjectId(req.body.recipeId) });
+        const user = await mongodb.getDb().db().collection('users').findOne({ _id: new ObjectId(req.body.userId) });
+
+        // Check if both recipe and user exist
+        if (!recipe || !user) {
+            return res.status(404).json({ error: 'Recipe or User not found' });
+        }
+
+        // Create the saved recipe object with populated recipe and user details
+        const savedRecipe = {
+            recipe: {
+                id: recipe._id,
+                title: recipe.title,
+                directions: recipe.directions,
+                ingredients: recipe.ingredients,
+                prepTime: recipe.prepTime,
+                servings: recipe.serves
+            },
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email
+            },
+            savedTimestamp: new Date()
+        };
+
+         // Insert the saved recipe into the collection
+         const response = await mongodb.getDb().db().collection('savedRecipe').insertOne(savedRecipe);
+
+         if (response.acknowledged) {
+             res.status(201).json(response);
+         } else {
+             res.status(500).json({ error: 'Failed to save the recipe' });
+         }
+     } catch (error) {
+         res.status(500).json({ error: error.message });
+     }
+ };
+
 
 
 //delete a saved recipe
