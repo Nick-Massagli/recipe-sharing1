@@ -33,10 +33,10 @@ exports.createRecipe = async (req, res) => {
             recipe: {
                 id: recipe._id,
                 title: recipe.title,
-                directions: recipe.directions,
-                ingredients: recipe.ingredients,
-                prepTime: recipe.prepTime,
-                servings: recipe.serves
+                //directions: recipe.directions,
+                //ingredients: recipe.ingredients,
+                //prepTime: recipe.prepTime,
+                //servings: recipe.serves
             },
             user: {
                 id: user._id,

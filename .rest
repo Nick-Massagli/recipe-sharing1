@@ -4,6 +4,6 @@ POST http://localhost:8080/savedRecipe
 Content-Type: application/json
 
 {
-  "recipeId": "67d6077c1d3bd282b0bc0f2e",
+  "recipeId": "67d38120959245cafe9705cc",
   "userId": "67dc2db3611c4c3777570ed0"
 }
