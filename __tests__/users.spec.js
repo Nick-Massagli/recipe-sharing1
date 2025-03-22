@@ -43,12 +43,12 @@ describe('Test Handlers', () => {
             username: "embutton",
 });
 expect(res.header['content-type']).toBe('application/json; charset=utf-8');
-        expect(res.statusCode).toBe(204)
+        expect(res.statusCode).toBe(200)
 })
 
 test('responds to delete /users/:id', async () => {
     const res = await request.delete('/users/67dc2e9e49cf5201e572efad');
-    //expect(res.header['content-type']).toBe('application/json; charset=utf-8');
+    expect(res.header['content-type']).toBe('application/json; charset=utf-8');
     expect(res.statusCode).toBe(204)
 })
 })
