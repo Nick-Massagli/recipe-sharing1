@@ -1,25 +1,28 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Recipe Sharing DB",
-    "description": "An API for writing, sharing, and finding recipes",
+    "title": "Recipe Sharing Database",
+    "description": "An API for writing, sharing, and finding recipe",
     "version": "1.0.0"
   },
   "host": "localhost:8080",
   "basePath": "/",
-  "tags": [
-    {
-      "name": "Recipe",
-      "description": "functions regarding the written recipe"
-    }
-  ],
   "schemes": [
     "http"
   ],
   "paths": {
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/recipe/": {
       "get": {
-        "tags": ["Recipe"],
         "description": "",
         "produces": [
           "application/json"
@@ -31,7 +34,6 @@
         }
       },
       "post": {
-        "tags": ["Recipe"],
         "description": "",
         "parameters": [
           {
@@ -41,25 +43,25 @@
               "type": "object",
               "properties": {
                 "title": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "ingredients": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "directions": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "prepTime": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "AuthorID": {
-                  "example": "int"
+                  "example": "any"
                 },
                 "createdTimestamp": {
-                  "example": "int"
+                  "example": "any"
                 },
                 "serves": {
-                  "example": "int"
+                  "example": "any"
                 }
               }
             }
@@ -77,7 +79,6 @@
     },
     "/recipe/{id}": {
       "get": {
-        "tags": ["Recipe"],
         "description": "",
         "produces": [
           "application/json"
@@ -97,7 +98,6 @@
         }
       },
       "put": {
-        "tags": ["Recipe"],
         "description": "",
         "parameters": [
           {
@@ -113,25 +113,25 @@
               "type": "object",
               "properties": {
                 "title": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "ingredients": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "directions": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "prepTime": {
-                  "example": "string"
+                  "example": "any"
                 },
                 "AuthorID": {
-                  "example": "int"
+                  "example": "any"
                 },
                 "createdTimestamp": {
-                  "example": "int"
+                  "example": "any"
                 },
                 "serves": {
-                  "example": "int"
+                  "example": "any"
                 }
               }
             }
@@ -145,10 +145,8 @@
             "description": "Internal Server Error"
           }
         }
-        
       },
       "delete": {
-        "tags": ["Recipe"],
         "description": "",
         "parameters": [
           {
@@ -167,7 +165,211 @@
           }
         }
       }
-    }
-   
+    },
+    "/users/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "username": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       }
+    },
+    "/users/{id}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "username": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/savedRecipe/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "recipeID": {
+                  "example": "any"
+                },
+                "userID": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/savedRecipe/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    }
+  }
+}

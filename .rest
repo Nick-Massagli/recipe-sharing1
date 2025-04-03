@@ -1,0 +1,21 @@
+
+POST http://localhost:8080/users
+Content-Type: application/json
+{
+  "firstName": "Josh",
+  "lastName": "doe",
+    "email": "iwillnevertell@gmail.com",
+    "username":"joshdoe",
+}
+###
+GET http://localhost:8080/api
+
+//test failed
+//get recipe
+###
+DELETE http://localhost:8080/users/67dc2e9e49cf5201e572efad
+###
+DELETE http://localhost:8080/recipe/67df3c093c88ca03a3e3e444
+//put users recipe
+//delete users recipe
+
