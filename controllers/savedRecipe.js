@@ -9,8 +9,8 @@ exports.getAll = async (req, res) => {
 };
 //get by id
 exports.getSingle = async (req, res) => {
-    const db = mongodb.getDB();
-    const savedRecipe = await db.collection('savedRecipe').findOne({ _id: ObjectId(req.params.id) });
+    //const db = mongodb.getDb();
+    const savedRecipe = await mongodb.getDb().db().collection('savedRecipe').findOne({ _id: new ObjectId(req.params.id) });
     res.json(savedRecipe);
 };
 //create a new saved recipe with aggregation with recipe and user
@@ -63,7 +63,7 @@ exports.createRecipe = async (req, res) => {
 
 //delete a saved recipe
 exports.deleteRecipe = async (req, res) => {
-    const db = mongodb.getDB();
+    const db = mongodb.getDb().db();
     await db.collection('savedRecipe').deleteOne({ _id: ObjectId(req.params.id) });
     res.status(204).send();
 };

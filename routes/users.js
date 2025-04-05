@@ -9,12 +9,12 @@ router.get("/", userController.getAllUsers);
 router.get("/:id", userController.getUserById);
 
 // Create a new user
-router.post("/", requiresAuth(), userController.createUser);
+router.post("/", /*requiresAuth(),*/ userController.createUser);
 
 // Update a user by ID
-router.put("/:id", requiresAuth(), userController.updateUser);
+router.put("/:id", /*requiresAuth(),*/ userController.updateUser);
 
 // Delete a user by ID
-router.delete("/:id", requiresAuth(), userController.deleteUser);
+router.delete("/:id",/* requiresAuth(),*/ userController.deleteUser);
 
 module.exports = router;

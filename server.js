@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 //const MongoClient = require('mongodb').MongoClient;
 const mongodb = require('./db/connect');
 var path = require('path');
@@ -48,7 +49,7 @@ mongodb.initDb((err) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(cookieParser())
+app.use(cookieParser())
 
 //app.use('/', users);
 
