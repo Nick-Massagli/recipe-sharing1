@@ -16,9 +16,6 @@ exports.getSingle = async (req, res) => {
 //create a new saved recipe with aggregation with recipe and user
 exports.createRecipe = async (req, res) => {
     try {
-        //const recipeId = new ObjectId(req.body.recipeId); // Recipe ID from request body
-        //const userId = new ObjectId(req.body.userId); // User ID from request body
-
         // Fetch the recipe and user from their respective collections
         const recipe = await mongodb.getDb().db().collection('recipe').findOne({ _id: new ObjectId(req.body.recipeId) });
         const user = await mongodb.getDb().db().collection('users').findOne({ _id: new ObjectId(req.body.userId) });

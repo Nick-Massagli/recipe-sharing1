@@ -1,4 +1,4 @@
-GET http://localhost:8080/savedRecipe
+GET http://localhost:8080/recipe
 ###
 POST http://localhost:8080/users
 Content-Type: application/json
@@ -18,7 +18,20 @@ Content-Type: application/json
     
 }
 ###
+POST http://localhost:8080/recipe
+Content-Type: application/json
 
+{
+    "title": "any",
+  "ingredients": "any",
+  "directions": "any",
+  "prepTime": "any",
+  "AuthorID": "67d63af7b2dccaaec41be98f",
+  "createdTimestamp": "any",
+  "serves": "any"
+    
+}
+###
 DELETE http://localhost:8080/users/67dc2e9e49cf5201e572efad
 ###
 DELETE http://localhost:8080/recipe/67df3c093c88ca03a3e3e444
