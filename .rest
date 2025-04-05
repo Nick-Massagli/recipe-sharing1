@@ -2,8 +2,9 @@ GET http://localhost:8080/recipe
 ###
 POST http://localhost:8080/users
 Content-Type: application/json
+
 {
-  "firstName": "Josh",
+  "firstName": "",
   "lastName": "doe",
     "email": "iwillnevertell@gmail.com",
     "username":"joshdoe"
@@ -22,7 +23,7 @@ POST http://localhost:8080/recipe
 Content-Type: application/json
 
 {
-    "title": "any",
+    "title": "",
   "ingredients": "any",
   "directions": "any",
   "prepTime": "any",
