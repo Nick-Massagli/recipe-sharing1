@@ -31,6 +31,8 @@ const createRecipe = async (req, res) => {
     const type = {
       AuthorID: {
         id: user._id,
+        username: user.username,
+        email: user.email,
       },
       title: req.body.title,
       ingredients: req.body.ingredients,
