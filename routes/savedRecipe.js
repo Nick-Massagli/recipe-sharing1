@@ -7,5 +7,5 @@ router.get('/', savesController.getAll);
 router.get('/:id', savesController.getSingle);
 router.post('/',validator.saveRecipe, /*requiresAuth(),*/ savesController.createRecipe);
 //router.put('/:id', requiresAuth(),  savesController.updateRecipe);
-router.delete('/:id', /*requiresAuth(),*/ savesController.deleteRecipe);
+router.delete('/:id',/* requiresAuth(),*/ savesController.deleteRecipe);
 module.exports = router;
