@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const commentsController = require('../controllers/commentsController');
+const commentsController = require('../controllers/comments');
 
 // Get all comments for a recipe
 router.get('/:recipeId', commentsController.getComments);

@@ -1,10 +1,10 @@
-POST http://localhost:8080/users
+POST http://localhost:8080/comments
+
 Content-Type: application/json
 {
-  "firstName": "Josh",
-  "lastName": "doe",
-    "email": "iwillnevertell@gmail.com",
-    "username":"joshdoe",
+  "user": "Josh",
+  "text": "this is a test comment",
+    
 }
 ###
-GET http://localhost:8080/users
+GET http://localhost:8080/comments
