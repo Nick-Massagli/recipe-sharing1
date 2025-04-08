@@ -1,4 +1,4 @@
-POST http://localhost:8080/comments/67d38120959245cafe9705cc
+POST http://localhost:8080/comments/
 
 Content-Type: application/json
 {
