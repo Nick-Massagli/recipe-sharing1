@@ -1,12 +1,12 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
+const express = require('express');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 //const MongoClient = require('mongodb').MongoClient;
-const mongodb = require("./db/connect");
-var path = require("path");
-const { auth, requiresAuth } = require("express-openid-connect");
-const errorHandler = require("./Utilities/errorHandler");
-require("dotenv").config();
+const mongodb = require('./db/connect');
+var path = require('path');
+const { auth, requiresAuth } = require('express-openid-connect');
+const errorHandler = require('./Utilities/errorHandler');
+require('dotenv').config();
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -23,21 +23,21 @@ const config = {
 app.use(auth(config));
 
 // req.isAuthenticated is provided from the auth router
-app.get("/", (req, res) => {
-  res.send(req.oidc.isAuthenticated() ? "Logged in" : "Logged out");
+app.get('/', (req, res) => {
+  res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
-app.get("/profile", requiresAuth(), (req, res) => {
+app.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
 app
   .use(bodyParser.json())
   .use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   })
-  .use("/", require("./routes"));
+  .use('/', require('./routes'));
 
 mongodb.initDb((err) => {
   if (err) {

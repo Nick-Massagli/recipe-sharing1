@@ -1,11 +1,11 @@
 {
-    "recipe": {
-        "title": "Peanut Butter and Jelly",
-        "ingredients": "Peanut Butter, Jelly, Bread",
-        "directions": "Take 2 slices of bread, spread peanut butter on one slice, jelly on the other, combine and enjoy. OPTIONAL: Cut the crusts of the bread off",
-        "prepTime": "<5 minutes",
-        "Author": "Nick M.",
-        "createdTimestamp": "",
-        "serves": "1"
-    }
+  "recipe": {
+    "title": "Peanut Butter and Jelly",
+    "ingredients": "Peanut Butter, Jelly, Bread",
+    "directions": "Take 2 slices of bread, spread peanut butter on one slice, jelly on the other, combine and enjoy. OPTIONAL: Cut the crusts of the bread off",
+    "prepTime": "<5 minutes",
+    "Author": "Nick M.",
+    "createdTimestamp": "",
+    "serves": "1"
+  }
 }

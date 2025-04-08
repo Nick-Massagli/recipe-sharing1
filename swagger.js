@@ -1,14 +1,14 @@
-const swaggerAutogen = require("swagger-autogen")();
+const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
-    title: "Recipe Sharing Database",
-    description: "An API for writing, sharing, and finding recipe",
+    title: 'Recipe Sharing Database',
+    description: 'An API for writing, sharing, and finding recipe',
   },
-  host: "recipe-sharing-zj35.onrender.com",
-  schemes: ["https"],
+  host: 'recipe-sharing-zj35.onrender.com',
+  schemes: ['https'],
 };
-const outputFile = "./swagger.json";
-const endpointsFiles = ["./routes/index.js"];
+const outputFile = './swagger.json';
+const endpointsFiles = ['./routes/index.js'];
 // generate swagger.json
 swaggerAutogen(outputFile, endpointsFiles, doc);
 // Run server after it gets generated
