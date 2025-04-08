@@ -8,9 +8,9 @@ Content-Type: application/json
    
 }
 ###
-GET http://localhost:8080/recipe
+GET http://localhost:8080/comments/67d38120959245cafe9705cc
 ###
-
+DELETE http://localhost:8080/comments/67d38120959245cafe9705cc/67f57adfb2db8a13ca16ea6d
 
 ###
 GET http://localhost:8080/comments/67d38120959245cafe9705cc

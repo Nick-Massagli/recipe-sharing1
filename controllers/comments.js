@@ -45,8 +45,8 @@ const addComment = async (req, res) => {
 const deleteComment = async (req, res) => {
     try {
         const commentId = req.params.commentId;
-        const db = mongodb.getDb();
-        const result = await db.collection('comments').deleteOne({ _id: new ObjectId(commentId) });
+        //const db = mongodb.getDb();
+        const result = await mongodb.getDb().db().collection('comments').deleteOne({ _id: new ObjectId(commentId) });
 
         if (result.deletedCount === 0) {
             return res.status(404).json({ message: 'Comment not found' });

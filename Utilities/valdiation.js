@@ -114,6 +114,61 @@ const saveUser = (req, res, next) => {
         next();
       });
     };
+    //validate get comments
+    const getComments = (req, res, next) => {
+      const validationRule = {
+        recipeId: "required|string",
+      };
+  
+      validator(req.params, validationRule, {}, (err, status) => {
+        if (!status) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: err,
+          });
+        }
+    
+        // Validate that recipeId is a valid ObjectId
+        if (!mongoose.Types.ObjectId.isValid(req.params.recipeId)) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: { recipeId: "Invalid ObjectId format" },
+          });
+        }
+    
+        next();
+      });
+    };
+    //validate delete comments
+    const deleteComment = (req, res, next) => {
+      const validationRule = {
+        recipeId: "required|string",
+        commentId: "required|string",
+      };
+  
+      validator(req.params, validationRule, {}, (err, status) => {
+        if (!status) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: err,
+          });
+        }
+    
+        // Validate that recipeId and commentId are valid ObjectIds
+        if (!mongoose.Types.ObjectId.isValid(req.params.recipeId) || !mongoose.Types.ObjectId.isValid(req.params.commentId)) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: { recipeId: "Invalid ObjectId format", commentId: "Invalid ObjectId format" },
+          });
+        }
+    
+        next();
+      });
+    };
  
  
   
@@ -122,6 +177,8 @@ const saveUser = (req, res, next) => {
     saveUser,
     recipe,
     saveRecipe,
-    saveComment
+    saveComment,
+    getComments,
+    deleteComment,
 
   };
