@@ -61,6 +61,6 @@ exports.createRecipe = async (req, res) => {
 //delete a saved recipe
 exports.deleteRecipe = async (req, res) => {
     const db = mongodb.getDb().db();
-    await db.collection('savedRecipe').deleteOne({ _id: ObjectId(req.params.id) });
+    await db.collection('savedRecipe').deleteOne({ _id: new ObjectId(req.params.id) });
     res.status(204).send();
 };
