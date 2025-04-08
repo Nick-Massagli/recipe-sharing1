@@ -19,6 +19,7 @@ const getSingle = async (req, res) => {
 };
 
 const createRecipe = async (req, res) => {
+
   try {
     // Fetch the user from the users collection
     const user = await mongodb.getDb().db().collection('users').findOne({ _id: new ObjectId(req.body.AuthorID) });
@@ -43,6 +44,7 @@ const createRecipe = async (req, res) => {
     };
 
     const response = await mongodb.getDb().db().collection('recipe').insertOne(type);
+
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {

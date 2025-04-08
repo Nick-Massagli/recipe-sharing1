@@ -314,12 +314,31 @@
         }
       }
     },
+    "/comments/{recipeId}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "recipeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+
     "/savedRecipe/": {
       "get": {
         "description": "",
         "responses": {
           "200": {
             "description": "OK"
+
           }
         }
       },
@@ -327,15 +346,37 @@
         "description": "",
         "parameters": [
           {
+
+            "name": "recipeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
+
+
+                "user": {
+                  "example": "any"
+                },
+                "text": {
+
+                "recipeID": {
+                  "example": "any"
+                },
+                "userID": {
+
+
                 "recipeId": {
                   "example": "any"
                 },
                 "userId": {
+
                   "example": "any"
                 }
               }
@@ -358,6 +399,20 @@
         }
       }
     },
+
+    "/comments/{recipeId}/{commentId}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "recipeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "commentId",
+
     "/savedRecipe/{id}": {
       "get": {
         "description": "",
@@ -380,14 +435,26 @@
         "parameters": [
           {
             "name": "id",
+
             "in": "path",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
+
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+
           "204": {
             "description": "No Content"
+
           }
         }
       }

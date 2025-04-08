@@ -1,14 +1,21 @@
-GET http://localhost:8080/recipe
-###
-POST http://localhost:8080/users
+
+POST http://localhost:8080/comments/
 Content-Type: application/json
 
 {
-  "firstName": "",
-  "lastName": "doe",
-    "email": "iwillnevertell@gmail.com",
-    "username":"joshdoe"
+
+  "user": "67d62fe58648e07250d53b77",
+  "text": "this is a test comment",
+    
 }
+###
+GET http://localhost:8080/recipe
+###
+
+
+###
+GET http://localhost:8080/comments/
+
 ###
 POST http://localhost:8080/savedRecipe
 Content-Type: application/json
@@ -36,5 +43,6 @@ Content-Type: application/json
 DELETE http://localhost:8080/users/67dc2e9e49cf5201e572efad
 ###
 DELETE http://localhost:8080/savedRecipe/67d985693233392ddcf8dfcf
+
 
 
