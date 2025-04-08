@@ -1,0 +1,11 @@
+const express = require("express");
+const router = express.Router();
+const savesController = require("../controllers/savedRecipe");
+const { requiresAuth } = require("express-openid-connect");
+const validator = require("../Utilities/valdiation");
+router.get('/', savesController.getAll);
+router.get('/:id', savesController.getSingle);
+router.post('/',validator.saveRecipe, /*requiresAuth(),*/ savesController.createRecipe);
+//router.put('/:id', requiresAuth(),  savesController.updateRecipe);
+router.delete('/:id',/* requiresAuth(),*/ savesController.deleteRecipe);
+module.exports = router;

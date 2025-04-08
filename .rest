@@ -1,10 +1,48 @@
-POST http://localhost:8080/comments/
 
+POST http://localhost:8080/comments/
 Content-Type: application/json
+
 {
+
   "user": "67d62fe58648e07250d53b77",
   "text": "this is a test comment",
     
 }
 ###
+GET http://localhost:8080/recipe
+###
+
+
+###
 GET http://localhost:8080/comments/
+
+###
+POST http://localhost:8080/savedRecipe
+Content-Type: application/json
+
+{
+    "recipeId": "67d38120959245cafe9705cc",
+  "userId": "67d62fe58648e07250d53b77"
+    
+}
+###
+POST http://localhost:8080/recipe
+Content-Type: application/json
+
+{
+    "title": "",
+  "ingredients": "any",
+  "directions": "any",
+  "prepTime": "any",
+  "AuthorID": "67d63af7b2dccaaec41be98f",
+  "createdTimestamp": "any",
+  "serves": "any"
+    
+}
+###
+DELETE http://localhost:8080/users/67dc2e9e49cf5201e572efad
+###
+DELETE http://localhost:8080/savedRecipe/67d985693233392ddcf8dfcf
+
+
+

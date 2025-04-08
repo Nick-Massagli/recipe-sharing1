@@ -19,21 +19,40 @@ const getSingle = async (req, res) => {
 };
 
 const createRecipe = async (req, res) => {
-  const type = {
-    title: req.body.title,
-    ingredients: req.body.ingredients,
-    directions: req.body.directions,
-    prepTime: req.body.prepTime,
-    AuthorID: req.body.AuthorID,
-    createdTimestamp: req.body.createdTimestamp,
-    serves: req.body.serves
-  };
-  const response = await mongodb.getDb().collection('recipe').insertOne(type);
+
+  try {
+    // Fetch the user from the users collection
+    const user = await mongodb.getDb().db().collection('users').findOne({ _id: new ObjectId(req.body.AuthorID) });
+
+    // Check if the user exists
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const type = {
+      AuthorID: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+      },
+      title: req.body.title,
+      ingredients: req.body.ingredients,
+      directions: req.body.directions,
+      prepTime: req.body.prepTime,
+      createdTimestamp: req.body.createdTimestamp || new Date(),
+      serves: req.body.serves,
+    };
+
+    const response = await mongodb.getDb().db().collection('recipe').insertOne(type);
+
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
     res.status(500).json(response.error || 'Some error occurred while creating the recipe.');
   }
+}catch (error) {
+  res.status(500).json({ error: 'An unexpected error occurred.' });
+}
 };
 
 const updateRecipe = async (req, res) => {

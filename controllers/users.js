@@ -87,7 +87,7 @@ const deleteUser = async (req, res) => {
     .collection("users")
     .deleteOne({ _id: userId }, true);
   if (response.deletedCount > 0) {
-    res.status(200).json({ message: "User deleted successfully" });
+    res.status(204).json({ message: "User deleted successfully" });
   } else {
     res.status(500).json({ error: "Failed to delete user" });
   }
