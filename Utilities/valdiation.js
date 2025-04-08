@@ -83,6 +83,35 @@ const saveUser = (req, res, next) => {
       });
     };
 
+    //validate comments
+    const saveComment = (req, res, next) => {
+      const validationRule = {
+        //recipeId: "required|string",
+        userId: "required|string",
+        text: "required|string",
+      };
+  
+      validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: err,
+          });
+        }
+    
+        // Validate that recipeId and userId are valid ObjectIds
+        if (!mongoose.Types.ObjectId.isValid(req.body.recipeId) || !mongoose.Types.ObjectId.isValid(req.body.userId)) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: { recipeId: "Invalid ObjectId format", userId: "Invalid ObjectId format" },
+          });
+        }
+    
+        next();
+      });
+    };
  
  
   
@@ -90,5 +119,7 @@ const saveUser = (req, res, next) => {
   module.exports = {
     saveUser,
     recipe,
-    saveRecipe
+    saveRecipe,
+    saveComment
+
   };

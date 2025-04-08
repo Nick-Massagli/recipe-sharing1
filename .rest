@@ -1,12 +1,11 @@
 
-POST http://localhost:8080/comments/
+POST http://localhost:8080/comments/67d38120959245cafe9705cc
 Content-Type: application/json
 
 {
-
-  "user": "67d62fe58648e07250d53b77",
-  "text": "this is a test comment",
-    
+  "userId": "67d632aa8648e07250d53b78",
+  "text": "this is a test comment"
+   
 }
 ###
 GET http://localhost:8080/recipe
@@ -14,7 +13,7 @@ GET http://localhost:8080/recipe
 
 
 ###
-GET http://localhost:8080/comments/
+GET http://localhost:8080/comments/67d38120959245cafe9705cc
 
 ###
 POST http://localhost:8080/savedRecipe
