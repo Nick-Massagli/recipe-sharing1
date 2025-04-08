@@ -86,8 +86,8 @@ const saveUser = (req, res, next) => {
     //validate comments
     const saveComment = (req, res, next) => {
       const validationRule = {
-        //recipeId: "required|string",
-        userId: "required|string",
+       // recipeId: "required|string",
+        user: "required|string",
         text: "required|string",
       };
   
@@ -99,13 +99,15 @@ const saveUser = (req, res, next) => {
             data: err,
           });
         }
-    
+    // Convert recipeId and userId to strings before validation
+    const recipeId = String(req.params.recipeId);
+    const user = String(req.body.user);
         // Validate that recipeId and userId are valid ObjectIds
-        if (!mongoose.Types.ObjectId.isValid(req.body.recipeId) || !mongoose.Types.ObjectId.isValid(req.body.userId)) {
+        if (!mongoose.Types.ObjectId.isValid(recipeId) || !mongoose.Types.ObjectId.isValid(user)) {
           return res.status(412).send({
             success: false,
             message: "Validation failed",
-            data: { recipeId: "Invalid ObjectId format", userId: "Invalid ObjectId format" },
+            data: { recipeId: "Invalid ObjectId format", user: "Invalid ObjectId format" },
           });
         }
     
