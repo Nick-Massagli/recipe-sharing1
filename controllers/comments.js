@@ -15,9 +15,20 @@ const getComments = async (req, res) => {
 const addComment = async (req, res) => {
     try {
         const recipeId = req.params.recipeId;
+
+        const user = await mongodb.getDb().db().collection('users').findOne({ _id: new ObjectId(req.body.userId) });
+       
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
         const comment = {
             recipeId: recipeId,
-            user: req.body.user,
+            user:{
+                id: user._id,
+                username: user.username,
+                firstName: user.firstName,
+                lastName: user.lastName,
+            },
             text: req.body.text,
             createdAt: new Date()
         };
