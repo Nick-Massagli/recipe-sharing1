@@ -3,7 +3,7 @@ POST http://localhost:8080/comments/67d38120959245cafe9705cc
 Content-Type: application/json
 
 {
-  "userId": "67d632aa8648e07250d53b78",
+  "user": "67d632aa8648e07250d53b78",
   "text": "this is a test comment"
    
 }
