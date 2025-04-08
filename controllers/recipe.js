@@ -34,7 +34,9 @@ const getSingle = async (req, res, next) => {
   }
 };
 
+
 const createRecipe = async (req, res, next) => {
+
   try {
     const user = await mongodb
       .getDb()
@@ -62,6 +64,7 @@ const createRecipe = async (req, res, next) => {
       serves: req.body.serves,
     };
 
+
     const response = await mongodb
       .getDb()
       .db()
@@ -77,6 +80,7 @@ const createRecipe = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+
   }
 };
 

@@ -88,8 +88,103 @@ const saveRecipe = (req, res, next) => {
   });
 };
 
-module.exports = {
-  saveUser,
-  recipe,
-  saveRecipe,
-};
+
+    //validate comments
+    const saveComment = (req, res, next) => {
+      const validationRule = {
+       // recipeId: "required|string",
+        user: "required|string",
+        text: "required|string",
+      };
+  
+      validator(req.body, validationRule, {}, (err, status) => {
+        if (!status) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: err,
+          });
+        }
+    // Convert recipeId and userId to strings before validation
+    const recipeId = String(req.params.recipeId);
+    const user = String(req.body.user);
+        // Validate that recipeId and userId are valid ObjectIds
+        if (!mongoose.Types.ObjectId.isValid(recipeId) || !mongoose.Types.ObjectId.isValid(user)) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: { recipeId: "Invalid ObjectId format", user: "Invalid ObjectId format" },
+          });
+        }
+    
+        next();
+      });
+    };
+    //validate get comments
+    const getComments = (req, res, next) => {
+      const validationRule = {
+        recipeId: "required|string",
+      };
+  
+      validator(req.params, validationRule, {}, (err, status) => {
+        if (!status) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: err,
+          });
+        }
+    
+        // Validate that recipeId is a valid ObjectId
+        if (!mongoose.Types.ObjectId.isValid(req.params.recipeId)) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: { recipeId: "Invalid ObjectId format" },
+          });
+        }
+    
+        next();
+      });
+    };
+    //validate delete comments
+    const deleteComment = (req, res, next) => {
+      const validationRule = {
+        recipeId: "required|string",
+        commentId: "required|string",
+      };
+  
+      validator(req.params, validationRule, {}, (err, status) => {
+        if (!status) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: err,
+          });
+        }
+    
+        // Validate that recipeId and commentId are valid ObjectIds
+        if (!mongoose.Types.ObjectId.isValid(req.params.recipeId) || !mongoose.Types.ObjectId.isValid(req.params.commentId)) {
+          return res.status(412).send({
+            success: false,
+            message: "Validation failed",
+            data: { recipeId: "Invalid ObjectId format", commentId: "Invalid ObjectId format" },
+          });
+        }
+    
+        next();
+      });
+    };
+ 
+ 
+  
+  
+  module.exports = {
+    saveUser,
+    recipe,
+    saveRecipe,
+    saveComment,
+    getComments,
+    deleteComment,
+
+  };
