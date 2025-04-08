@@ -1,10 +1,11 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 //const MongoClient = require('mongodb').MongoClient;
-const mongodb = require('./db/connect');
-var path = require('path');
+const mongodb = require("./db/connect");
+var path = require("path");
 const { auth, requiresAuth } = require("express-openid-connect");
+const errorHandler = require("./Utilities/errorHandler");
 require("dotenv").config();
 
 const port = process.env.PORT || 8080;
@@ -13,7 +14,7 @@ const app = express();
 const config = {
   authRequired: false,
   auth0Logout: true,
-  secret: process.env.SECERT,
+  secret: process.env.SECRET,
   baseURL: process.env.BASE_URL,
   clientID: process.env.CLIENT_ID,
   issuerBaseURL: process.env.ISSUER_BASE_URL,
@@ -33,10 +34,10 @@ app.get("/profile", requiresAuth(), (req, res) => {
 app
   .use(bodyParser.json())
   .use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader("Access-Control-Allow-Origin", "*");
     next();
   })
-  .use('/', require('./routes'));
+  .use("/", require("./routes"));
 
 mongodb.initDb((err) => {
   if (err) {
@@ -49,8 +50,11 @@ mongodb.initDb((err) => {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser())
+app.use(cookieParser());
 
 //app.use('/', users);
+
+// use errorHandler middleware last
+app.use(errorHandler);
 
 module.exports = app;
