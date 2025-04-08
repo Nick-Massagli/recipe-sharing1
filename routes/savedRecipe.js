@@ -1,10 +1,10 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const savesController = require("../controllers/savedRecipe");
-const { requiresAuth } = require("express-openid-connect");
-const validator = require("../Utilities/valdiation");
+const savesController = require('../controllers/savedRecipe');
+const { requiresAuth } = require('express-openid-connect');
+const validator = require('../Utilities/valdiation');
 
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     await savesController.getAll(req, res);
   } catch (error) {
@@ -12,7 +12,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     await savesController.getSingle(req, res);
   } catch (error) {
@@ -20,7 +20,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/", validator.saveRecipe, async (req, res, next) => {
+router.post('/', validator.saveRecipe, async (req, res, next) => {
   try {
     await savesController.createRecipe(req, res);
   } catch (error) {
@@ -36,7 +36,7 @@ router.post("/", validator.saveRecipe, async (req, res, next) => {
 //  }
 //});
 
-router.delete("/:id", async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     await savesController.deleteRecipe(req, res);
   } catch (error) {

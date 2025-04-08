@@ -1,11 +1,11 @@
-const mongodb = require("../db/connect");
-const ObjectId = require("mongodb").ObjectId;
+const mongodb = require('../db/connect');
+const ObjectId = require('mongodb').ObjectId;
 
 const getAllUsers = async (req, res, next) => {
   try {
-    const result = await mongodb.getDb().db().collection("users").find();
+    const result = await mongodb.getDb().db().collection('users').find();
     result.toArray().then((lists) => {
-      res.setHeader("Content-Type", "application/json");
+      res.setHeader('Content-Type', 'application/json');
       res.status(200).json(lists);
     });
   } catch (error) {
@@ -19,14 +19,14 @@ const getUserById = async (req, res, next) => {
     const result = await mongodb
       .getDb()
       .db()
-      .collection("users")
+      .collection('users')
       .find({ _id: userId });
     result.toArray().then((lists) => {
       if (lists.length > 0) {
-        res.setHeader("Content-Type", "application/json");
+        res.setHeader('Content-Type', 'application/json');
         res.status(200).json(lists[0]);
       } else {
-        const error = new Error("User not found");
+        const error = new Error('User not found');
         error.status = 404;
         throw error; // Throw error to be caught by the error handler
       }
@@ -47,17 +47,15 @@ const createUser = async (req, res, next) => {
     const response = await mongodb
       .getDb()
       .db()
-      .collection("users")
+      .collection('users')
       .insertOne(user);
     if (response.acknowledged) {
-      res
-        .status(201)
-        .json({
-          message: "User created successfully",
-          id: response.insertedId,
-        });
+      res.status(201).json({
+        message: 'User created successfully',
+        id: response.insertedId,
+      });
     } else {
-      const error = new Error("Failed to create user");
+      const error = new Error('Failed to create user');
       error.status = 500;
       throw error;
     }
@@ -72,11 +70,11 @@ const updateUser = async (req, res, next) => {
     const existingUser = await mongodb
       .getDb()
       .db()
-      .collection("users")
+      .collection('users')
       .findOne({ _id: userId });
 
     if (!existingUser) {
-      const error = new Error("User not found");
+      const error = new Error('User not found');
       error.status = 404;
       throw error;
     }
@@ -91,13 +89,13 @@ const updateUser = async (req, res, next) => {
     const response = await mongodb
       .getDb()
       .db()
-      .collection("users")
+      .collection('users')
       .updateOne({ _id: userId }, { $set: updatedUser });
 
     if (response.modifiedCount > 0) {
-      res.status(200).json({ message: "User updated successfully" });
+      res.status(200).json({ message: 'User updated successfully' });
     } else {
-      const error = new Error("Failed to update user");
+      const error = new Error('Failed to update user');
       error.status = 500;
       throw error;
     }
@@ -112,12 +110,12 @@ const deleteUser = async (req, res, next) => {
     const response = await mongodb
       .getDb()
       .db()
-      .collection("users")
+      .collection('users')
       .deleteOne({ _id: userId }, true);
     if (response.deletedCount > 0) {
-      res.status(204).json({ message: "User deleted successfully" });
+      res.status(204).json({ message: 'User deleted successfully' });
     } else {
-      const error = new Error("Failed to delete user");
+      const error = new Error('Failed to delete user');
       error.status = 500;
       throw error;
     }
