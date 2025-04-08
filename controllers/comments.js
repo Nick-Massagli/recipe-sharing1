@@ -15,25 +15,27 @@ const getComments = async (req, res) => {
 const addComment = async (req, res) => {
     try {
         const recipeId = req.params.recipeId;
-
-        const user = await mongodb.getDb().db().collection('users').findOne({ _id: new ObjectId(req.body.userId) });
+        // Fetch the user from the users collection
+       /* const user = await mongodb.getDb().db().collection('users').findOne({ _id: new ObjectId(req.body.userId) });
        
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
-        }
+        }*/
         const comment = {
             recipeId: recipeId,
-            user:{
+           /* userId:{
                 id: user._id,
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
-            },
+            },*/
+            user: req.body.user,
             text: req.body.text,
             createdAt: new Date()
         };
-        const db = mongodb.getDb();
-        const result = await db.collection('comments').insertOne(comment);
+        console.log(req.body)
+        //const db = mongodb.getDb();
+        const result = await mongodb.getDb().db().collection('comments').insertOne(comment);
         res.status(201).json(result);
     } catch (err) {
         res.status(500).json({ message: err.message });

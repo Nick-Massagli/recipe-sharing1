@@ -28,7 +28,7 @@ const createRecipe = async (req, res) => {
     createdTimestamp: req.body.createdTimestamp,
     serves: req.body.serves
   };
-  const response = await mongodb.getDb().db().collection('recipe').insertOne(type);
+  const response = await mongodb.getDb().collection('recipe').insertOne(type);
   if (response.acknowledged) {
     res.status(201).json(response);
   } else {
