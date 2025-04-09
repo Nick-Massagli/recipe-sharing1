@@ -20,7 +20,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', validator.saveRecipe, async (req, res, next) => {
+router.post('/',requiresAuth(), validator.saveRecipe, async (req, res, next) => {
   try {
     await savesController.createRecipe(req, res);
   } catch (error) {
@@ -36,7 +36,7 @@ router.post('/', validator.saveRecipe, async (req, res, next) => {
 //  }
 //});
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', requiresAuth(), async (req, res, next) => {
   try {
     await savesController.deleteRecipe(req, res);
   } catch (error) {

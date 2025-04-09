@@ -46,7 +46,7 @@ router.put(
 
 router.delete(
   '/:id',
-  /*requiresAuth(),*/ async (req, res, next) => {
+  requiresAuth(), async (req, res, next) => {
     try {
       await recipeController.deleteRecipe(req, res);
     } catch (error) {

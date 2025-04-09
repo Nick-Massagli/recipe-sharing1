@@ -13,17 +13,17 @@ router.get('/:id', userController.getUserById);
 router.post(
   '/',
   validator.saveUser,
-  /*requiresAuth(),*/ userController.createUser
+  requiresAuth(), userController.createUser
 );
 
 // Update a user by ID
 router.put(
   '/:id',
   validator.saveUser,
-  /*requiresAuth(),*/ userController.updateUser
+  requiresAuth(), userController.updateUser
 );
 
 // Delete a user by ID
-router.delete('/:id', /* requiresAuth(),*/ userController.deleteUser);
+router.delete('/:id',  requiresAuth(), userController.deleteUser);
 
 module.exports = router;

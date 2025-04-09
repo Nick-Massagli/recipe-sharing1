@@ -13,7 +13,7 @@ router.get('/:recipeId', validator.getComments, (req, res, next) => {
 router.post(
   '/:recipeId',
   validator.saveComment,
-  /* requiresAuth(), */ (req, res, next) => {
+   requiresAuth(),  (req, res, next) => {
     commentsController.addComment(req, res, next);
   }
 );
@@ -22,7 +22,7 @@ router.post(
 router.delete(
   '/:recipeId/:commentId',
   validator.deleteComment,
-  /* requiresAuth(), */ (req, res, next) => {
+   requiresAuth(),  (req, res, next) => {
     commentsController.deleteComment(req, res, next);
   }
 );
