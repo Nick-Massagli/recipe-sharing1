@@ -31,7 +31,7 @@ const addComment = async (req, res, next) => {
     }
     const comment = {
       recipeId: recipeId,
-      user: {
+      userId: {
         id: user._id,
         username: user.username,
         firstName: user.firstName,
