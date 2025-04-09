@@ -23,7 +23,7 @@ router.get('/:id', async (req, res, next) => {
 router.post(
   '/',
   validator.recipe,
-  /*requiresAuth(),*/ async (req, res, next) => {
+  requiresAuth(), async (req, res, next) => {
     try {
       await recipeController.createRecipe(req, res);
     } catch (error) {
@@ -35,7 +35,7 @@ router.post(
 router.put(
   '/:id',
   validator.recipe,
-  /*requiresAuth(),*/ async (req, res, next) => {
+  requiresAuth(), async (req, res, next) => {
     try {
       await recipeController.updateRecipe(req, res);
     } catch (error) {
